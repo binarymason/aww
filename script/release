@@ -10,4 +10,6 @@ python3 -m build
 export PATH=${HOME}/.local/bin:$PATH
 python3 -m pip install --user --upgrade twine
 echo "+ using pypi username: binarymason"
-twine upload --username binarymason dist/*
+echo "+ using pypi password located here: ~/.pypi"
+pw=$(cat ~/.pypi)
+twine upload --username binarymason --password "$pw" dist/*
