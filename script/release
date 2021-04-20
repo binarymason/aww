@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+rm -rf dist build
+
+if ! python3 -m build --help &>/dev/null; then
+  echo "+ downloading build..."
+  python3 -m pip install --upgrade build
+fi
+python3 -m build
+export PATH=${HOME}/.local/bin:$PATH
+python3 -m pip install --user --upgrade twine
+echo "+ using pypi username: binarymason"
+twine upload --username binarymason dist/*
